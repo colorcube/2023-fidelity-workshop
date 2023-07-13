@@ -14,9 +14,12 @@ export interface State {
 }
 
 const bookAdapter = joinAdapters<BookModel, keyof BookModel>()({
+  // adapters
+})({
   // Selectors
-    id: (s) => s.bookId,
+  id: (s) => s.bookId,
 })(); // https://state-adapt.github.io/docs/core#joinadapters
+
 const booksAdapter = createEntityAdapter<BookModel>()(bookAdapter); // https://state-adapt.github.io/adapters/core#createEntityAdapter
 
 console.log('booksAdapter', booksAdapter);
