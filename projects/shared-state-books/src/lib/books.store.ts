@@ -39,8 +39,8 @@ export const BooksStore = new InjectionToken('BooksStore', {
       concatMap(
         ({ payload }) =>
           booksService
-            .update(payload.id, payload)
-            .pipe(map((book) => getAction('bookUpdated$', [book.id, book]))) // https://state-adapt.github.io/docs/core#getaction
+            .update(payload.bookId, payload)
+            .pipe(map((book) => getAction('bookUpdated$', [book.bookId, book]))) // https://state-adapt.github.io/docs/core#getaction
       )
     );
 
@@ -50,7 +50,7 @@ export const BooksStore = new InjectionToken('BooksStore', {
           booksService
           .updateSpecial(payload)
           .pipe(
-            map((book) => getAction('bookUpdated$', [book.id, book])),
+            map((book) => getAction('bookUpdated$', [book.bookId, book])),
           )
       ),
     );

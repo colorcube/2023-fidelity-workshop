@@ -18,9 +18,9 @@
 
         <bco-books-list
           [books]="books$ | async"
-          (select)="store.setActiveBookId($event.id)"
-          (delete)="delete$.next($event.id)"
-          (special)="special$.next($event.id)"
+          (select)="store.setActiveBookId($event.bookId)"
+          (delete)="delete$.next($event.bookId)"
+          (special)="special$.next($event.bookId)"
         ></bco-books-list>
       </div>
 

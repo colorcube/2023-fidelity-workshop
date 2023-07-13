@@ -26,7 +26,7 @@ export function deleteBook(id: string) {
 export function deleteAllBooks() {
   return getBooks().then(({ body }) => {
     cy.wrap(body).each((book: BookModel) => {
-      deleteBook(book.id);
+      deleteBook(book.bookId);
     });
   });
 }

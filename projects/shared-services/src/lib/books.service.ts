@@ -24,7 +24,7 @@ export class BooksService {
 
   create(bookProps: BookRequiredProps) {
     const Book: BookModel = {
-      id: uuid.v4(),
+      bookId: uuid.v4(),
       ...bookProps,
     };
 

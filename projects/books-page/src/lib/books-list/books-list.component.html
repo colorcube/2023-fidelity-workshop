@@ -37,7 +37,7 @@
     <mat-list>
       <mat-list-item
         *ngFor="let book of books"
-        [attr.data-test-id]="'book-' + book.id"
+        [attr.data-test-id]="'book-' + book.bookId"
       >
         <div class="book-list-item">
           <h3 mat-line>{{ book.name }}</h3>

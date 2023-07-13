@@ -13,8 +13,15 @@ export interface State {
   books: EntityState<BookModel>; // https://github.com/state-adapt/state-adapt/blob/main/libs/core/adapters/src/lib/create-entity-adapter.function.ts#LL17C1-L23C2
 }
 
-const bookAdapter = joinAdapters<BookModel, keyof BookModel>()({})(); // https://state-adapt.github.io/docs/core#joinadapters
+const bookAdapter = joinAdapters<BookModel, keyof BookModel>()({
+  selectors: {
+    id: (s) => s.bookId,
+  }
+})(); // https://state-adapt.github.io/docs/core#joinadapters
 const booksAdapter = createEntityAdapter<BookModel>()(bookAdapter); // https://state-adapt.github.io/adapters/core#createEntityAdapter
+
+console.log('booksAdapter', booksAdapter);
+console.log('booksAdapter.updateOne', booksAdapter.updateOne);
 
 const errorAdapter = createAdapter<object | null>()({}); // https://state-adapt.github.io/docs/core#createadapter
 // https://state-adapt.github.io/docs/core#createadapter
@@ -53,3 +60,5 @@ export const adapter = joinAdapters<State>()({
     books: booksAdapter.updateOne,
   },
 })();
+
+console.log('joinAdapters', adapter);

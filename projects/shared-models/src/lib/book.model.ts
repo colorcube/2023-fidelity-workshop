@@ -1,5 +1,5 @@
 export interface BookModel {
-  id: string;
+  bookId: string;
   name: string;
   earnings: string;
   description?: string;
@@ -10,7 +10,7 @@ export type BookRequiredProps = Pick<
   'name' | 'earnings' | 'description'
 >;
 export function isBookModel(obj: any): obj is BookModel {
-  return obj && obj.id && obj.name && obj.earnings;
+  return obj && obj.bookId && obj.name && obj.earnings;
 }
 export type BookSortOrder = 'asc' | 'dsc';
 export type BookSortProp = 'name' | 'earnings';

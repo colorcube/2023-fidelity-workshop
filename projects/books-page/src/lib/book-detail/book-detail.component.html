@@ -2,7 +2,7 @@
   <mat-card-header>
     <mat-card-title>
       <h1>
-        <span *ngIf="originalBook?.id; else prompt"
+        <span *ngIf="originalBook?.bookId; else prompt"
           >Editing {{ originalBook?.name }}</span
         >
         <ng-template #prompt>Create Book</ng-template>
