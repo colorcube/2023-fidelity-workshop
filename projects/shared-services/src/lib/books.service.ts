@@ -2,11 +2,19 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as uuid from 'uuid';
 import { BookModel, BookRequiredProps } from '@book-co/shared-models';
+import { map } from 'rxjs/operators';
 
 const BASE_URL = 'http://localhost:3000/books';
 const HEADER = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 };
+
+interface ApiBookModel {
+  id: string;
+  name: string;
+  earnings: string;
+  description?: string;
+}
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +23,16 @@ export class BooksService {
   constructor(private http: HttpClient) {}
 
   fetchAll() {
-    return this.http.get<BookModel[]>(BASE_URL);
+    return this.http.get<ApiBookModel[]>(BASE_URL).pipe(
+      map((books) =>
+        books.map((book) => ({
+          bookId: book.id,
+          name: book.name,
+          earnings: book.earnings,
+          description: book.description,
+        }))
+      )
+    );
   }
 
   load(id: string) {
@@ -44,7 +61,9 @@ export class BooksService {
   }
 
   updateSpecial(id: string) {
-    const updates: BookRequiredProps = <BookRequiredProps>{ description: 'SPECIAL' };
+    const updates: BookRequiredProps = <BookRequiredProps>{
+      description: 'SPECIAL',
+    };
     return this.http.patch<BookModel>(
       `${BASE_URL}/${id}`,
       JSON.stringify(updates),

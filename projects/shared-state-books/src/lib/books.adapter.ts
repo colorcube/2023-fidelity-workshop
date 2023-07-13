@@ -10,17 +10,19 @@ export interface State {
   activeBookId: string | null;
   isLoading: boolean;
   error: object | null;
-  books: EntityState<BookModel>; // https://github.com/state-adapt/state-adapt/blob/main/libs/core/adapters/src/lib/create-entity-adapter.function.ts#LL17C1-L23C2
+  books: EntityState<BookModel, 'bookId'>; // https://github.com/state-adapt/state-adapt/blob/main/libs/core/adapters/src/lib/create-entity-adapter.function.ts#LL17C1-L23C2
 }
 
-const bookAdapter = joinAdapters<BookModel, keyof BookModel>()({
+type ExcludedBookModelProps = 'name' | 'earnings' | 'description';
+const bookAdapter = joinAdapters<BookModel, ExcludedBookModelProps>()({
   // adapters
+  bookId: createAdapter<string>()({}),
 })({
   // Selectors
   id: (s) => s.bookId,
 })(); // https://state-adapt.github.io/docs/core#joinadapters
 
-const booksAdapter = createEntityAdapter<BookModel>()(bookAdapter); // https://state-adapt.github.io/adapters/core#createEntityAdapter
+const booksAdapter = createEntityAdapter<BookModel, 'bookId'>()(bookAdapter); // https://state-adapt.github.io/adapters/core#createEntityAdapter
 
 console.log('booksAdapter', booksAdapter);
 console.log('booksAdapter.updateOne', booksAdapter.updateOne);
