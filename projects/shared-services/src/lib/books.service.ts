@@ -43,6 +43,15 @@ export class BooksService {
     );
   }
 
+  updateSpecial(id: string) {
+    const updates: BookRequiredProps = <BookRequiredProps>{ description: 'SPECIAL' };
+    return this.http.patch<BookModel>(
+      `${BASE_URL}/${id}`,
+      JSON.stringify(updates),
+      HEADER
+    );
+  }
+
   delete(id: string) {
     return this.http.delete(`${BASE_URL}/${id}`);
   }

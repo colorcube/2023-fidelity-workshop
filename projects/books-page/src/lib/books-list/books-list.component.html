@@ -41,11 +41,13 @@
       >
         <div class="book-list-item">
           <h3 mat-line>{{ book.name }}</h3>
+          <p mat-line>{{ book.description }}</p>
           <p mat-line>{{ book.earnings | currency }}</p>
           <bco-book-actions
             [isOnSmallDevice]="false"
             (select)="select.emit(book)"
             (delete)="delete.emit(book)"
+            (special)="special.emit(book)"
           ></bco-book-actions>
         </div>
       </mat-list-item>

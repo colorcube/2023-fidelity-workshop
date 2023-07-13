@@ -44,6 +44,17 @@ export const BooksStore = new InjectionToken('BooksStore', {
       )
     );
 
+    const bookSpecialUpdated$ = <Source<[string, BookModel]>>BooksPageActions.specialUpdate$.pipe(
+      concatMap(
+        ({ payload }) =>
+          booksService
+          .updateSpecial(payload)
+          .pipe(
+            map((book) => getAction('bookUpdated$', [book.id, book])),
+          )
+      ),
+    );
+
     const bookDeleted$ = BooksPageActions.deleteBook$.pipe(
       concatMap(({ payload }) =>
         booksService
@@ -60,6 +71,8 @@ export const BooksStore = new InjectionToken('BooksStore', {
       addBook: bookCreated$,
       updateBook: bookUpdated$ as Source<[string, BookModel]>, // https://state-adapt.github.io/docs/rxjs#source
       removeBooksOne: bookDeleted$,
+      updateBooksOne: bookSpecialUpdated$
+      // updateBooksOne: bookSpecialUpdated$ as Source<[string, BookModel]>
     });
   },
 });

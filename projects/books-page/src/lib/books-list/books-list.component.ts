@@ -11,5 +11,6 @@ export class BooksListComponent {
   @Input() books: BookModel[] | null = [];
   @Output() select = new EventEmitter();
   @Output() delete = new EventEmitter();
+  @Output() special = new EventEmitter();
   store = inject(BooksListStore);
 }

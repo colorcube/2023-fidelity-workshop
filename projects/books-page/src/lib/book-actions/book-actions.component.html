@@ -9,6 +9,13 @@
   >
     <mat-icon>delete</mat-icon>
   </button>
+  <button
+    mat-icon-button
+    (click)="special.emit()"
+    data-test-id="bookSpecialButton"
+  >
+    <mat-icon>check_circle</mat-icon>
+  </button>
 </ng-container>
 
 <ng-template #showCompactActions>

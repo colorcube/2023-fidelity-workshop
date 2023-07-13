@@ -20,6 +20,7 @@
           [books]="books$ | async"
           (select)="store.setActiveBookId($event.id)"
           (delete)="delete$.next($event.id)"
+          (special)="special$.next($event.id)"
         ></bco-books-list>
       </div>
 

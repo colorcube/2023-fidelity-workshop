@@ -17,5 +17,6 @@ export class BooksPageComponent {
   total$ = this.store.earningsTotals$;
 
   delete$ = BooksPageActions.deleteBook$;
+  special$ = BooksPageActions.specialUpdate$;
   save$ = BooksPageActions.saveBook$;
 }

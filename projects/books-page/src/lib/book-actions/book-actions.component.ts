@@ -8,5 +8,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class BookActionsComponent {
   @Input() isOnSmallDevice: boolean | null = false;
   @Output() delete = new EventEmitter();
+  @Output() special = new EventEmitter();
   @Output() select = new EventEmitter();
 }

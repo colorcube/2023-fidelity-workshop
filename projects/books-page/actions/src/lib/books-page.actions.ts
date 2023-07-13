@@ -8,6 +8,7 @@ import { Source } from '@state-adapt/rxjs';
 
 // https://state-adapt.github.io/docs/rxjs#source
 export const saveBook$ = new Source<BookRequiredProps | BookModel>('saveBook$');
+export const specialUpdate$ = new Source<string>('specialUpdate$');
 export const deleteBook$ = new Source<string>('deleteBook$');
 
 // https://state-adapt.github.io/docs/core#action
